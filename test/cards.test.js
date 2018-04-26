@@ -8,15 +8,15 @@ const server = require('../app')
 
 describe('cards GET', function () {
   beforeEach(function (done) {
-    const card = new Card({
-      name: "Soujo",
-      superskill: "unlimited blade works",
-      type: "archer",
-      role: "range",
-    })
-    card.save((err,res) => {
-      done()
-    })
+      const card = new Card({
+        name: "Soujo",
+        superskill: "unlimited blade works",
+        type: "archer",
+        role: "range",
+      })
+      card.save((err,res) => {
+        done()
+      })
   })
 
   afterEach(function (done) {
@@ -77,7 +77,7 @@ describe('card POST', function () {
 })
 
 describe('card UPDATE', function () {
-  let id = ''
+  let id = 'Soujo'
   beforeEach(function (done) {
     const card = new Card({
       name: "Soujo",

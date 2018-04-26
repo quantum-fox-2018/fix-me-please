@@ -242,7 +242,7 @@ describe('player DELETE', function () {
   describe('delete one players', function () {
     it('it should delete one players data ', function (done) {
       chai.request(server)
-      .get('/api/players')
+      .get('/api/player')
       .end(function(err, res) {
         res.body.should.be.an('object').to.have.property('msg')
         res.body.should.be.an('object').to.have.property('players').with.lengthOf(1).should.be.an('object')
