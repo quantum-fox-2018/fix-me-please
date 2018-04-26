@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
+const cors = require('cors')
 const mongoose = require('mongoose')
 
 const uri = 'mongodb://localhost/fix-me-please'
@@ -16,7 +18,10 @@ mongoose.connect(uri, function(err) {
 const cards = require('./routes/cards')
 const players = require('./routes/players')
 
+app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(morgan('dev'))
 
 app.get('/api/cards', cards)
 app.use('/api/players', players)
