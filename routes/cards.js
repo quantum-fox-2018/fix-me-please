@@ -1,12 +1,12 @@
-const router = require('express').Route()
-const {
-  all, create, update, deletes
-} = require('../controllers/card')
+const router = require('express').Router()
+const card = require('../controllers/card')
 
-router
-  .get('/', all)
-  .post('/', create)
-  .put('/:id', update)
-  .delete('/:id', deletes)
+router.get('/show', card.all)
+
+router.post('/add', card.create)
+  
+router.put('/update/:id', card.update)
+  
+router.delete('/delete/:id', card.delete)
 
 module.exports = router;

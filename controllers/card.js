@@ -1,24 +1,24 @@
-const Card = require('../models/card')
+const Card = require('../models/Card')
 
 module.exports = {
-  ell: function (req, res) {
-    Card.find(function(err, cards) {
-      if (err) {
-        res.status(500).send({
-          msg: 'error get data cards',
-          err
-        })
-      } else {
-        res.status(200).send({
-          msg: 'success get data cards',
-          cards
-        })
-      }
+  all: function (req, res) {
+    Card.find({})
+    .then(function(cards) {
+      res.status(200).send({
+        msg: 'success get data cards',
+        cards: cards
+      })
+    })
+    .catch(function(err){
+      res.status(500).send({
+        msg: 'error get data cards',
+        err
+      })
     })
   },
-  craeta: function (req, res) {
+  create: function (req, res) {
     let newCard = new Card(req.body)
-    newCard.save(function (err, card) {
+    Card.save({newCard}, function (err, card) {
       if (err) {
         res.status(500).send({
           msg: 'error add data card',
@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.update({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
@@ -57,18 +57,19 @@ module.exports = {
     })
   },
   delete: function (req, res) {
-    Card.remove({ _id: req.id }, function (err, result) {
-      if (err) {
-        res.status(500).send({
-          msg: 'error deleting data card',
-          err
-        })
-      } else {
-        res.status(201).send({
-          msg: 'success deleting data card',
-          result
-        })
-      }
+    let cardId = req.params.id
+    Card.remove({ _id: cardId })
+    .then(function(result) {
+      res.status(201).send({
+        msg: 'success deleting data card',
+        result
+      })
+    })
+    .catch(function(err){
+      res.status(500).send({
+        msg: 'error deleting data card',
+        err
+      })
     })
   }
 }
