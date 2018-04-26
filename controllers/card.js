@@ -34,14 +34,14 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.findOne({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
-          msg: 'error updating data card',
+          msg: 'error updating data player',
           err
         })
       } else {
-        Card.findOne({ _id: req.id }, function (err, card) {
+        result.update({ _id: req.id }, { $set: req.body }, function (err, card) {
           if (err) {
             res.status(500).send({
               msg: 'error data card not found',
@@ -50,6 +50,7 @@ module.exports = {
           } else {
             res.status(201).send({
               msg: 'success updating data card',
+              card
             })
           }
         })
@@ -57,7 +58,7 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Card.remove({ _id: req.id }, function (err, result) {
+    Card.remove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data card',
