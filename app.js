@@ -15,13 +15,13 @@ mongoose.connect(uri, function(err) {
 const app = express()
 
 const cards = require('./routes/cards')
-// const players = require('./routes/players')
+const players = require('./routes/players')
 
 app.use(express.json())
 app.use(express.urlencoded( {extended: false} ))
 
 app.use('/api/cards', cards)
-// app.use('/api/players', players)
+app.use('/api/players', players)
 
 app.listen(3000, () => console.log('listening on port 3000'))
 

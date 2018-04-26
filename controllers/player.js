@@ -4,21 +4,30 @@ module.exports = {
   all: function (req, res) {
     Player
       .find(function (err, players) {
+        // res.send(players)
+        console.log(players)
         if (err) {
           res.status(500).send({
             msg: 'error get data players',
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
         }
     })
   },
-  craete: function (req, res) {
-    let newPlayer = new Player(req.body)
+  create: function (req, res) {
+    let newPlayer = new Player({
+      nickname: req.body.nickname,
+      memberid: req.body.memberid,
+      role: req.body.role,
+      datejoin: Date.now(),
+      mmr: req.body.mmr, // number
+      cardlist: req.body.cardlist // id Card
+    })
     newPlayer.save(function (err, player) {
       if (err) {
         res.status(500).send({
