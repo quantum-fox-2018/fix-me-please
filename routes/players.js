@@ -1,7 +1,5 @@
 const router = require('express').Router()
-const {
-  all, create, update, deletes
-} = require('../controllers/player')
+const { all, create, update, deletes } = require('../controllers/player')
 
 router
   .get('/', all)
