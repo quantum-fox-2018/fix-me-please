@@ -49,8 +49,9 @@ module.exports = {
       type: req.body.type,
       role: req.body.role
     },
-    function (err, result) {
-        console.log(result)
+
+    function (err, card) {
+        console.log(card)
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
@@ -59,7 +60,7 @@ module.exports = {
       } else {
           res.status(201).send({
             msg: 'success updating data card',
-            result
+            card
           })
       }
     })
