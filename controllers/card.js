@@ -34,24 +34,16 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
           err
         })
       } else {
-        Card.findOne({ _id: req.id }, function (err, card) {
-          if (err) {
-            res.status(500).send({
-              msg: 'error data card not found',
-              err
-            })
-          } else {
-            res.status(201).send({
-              msg: 'success updating data card',
-            })
-          }
+        res.status(201).send({
+          msg: 'success updating data card',
+          data: result
         })
       }
     })
