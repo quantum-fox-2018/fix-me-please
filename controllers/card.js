@@ -24,13 +24,11 @@ module.exports = {
           msg: 'error add data card',
           err
         })
-      } else {
-        res.status(200).send({
-          msg: 'success add data card',
-          card
-        })
       }
-      res.send(card)
+      res.status(200).send({
+        msg: 'success add data card',
+        card
+      })
     })
   },
   update: function (req, res) {
