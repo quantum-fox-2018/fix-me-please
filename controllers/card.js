@@ -1,7 +1,7 @@
 const Card = require('../models/Card')
 
 module.exports = {
-  ell: function (req, res) {
+  all: function (req, res) {
     Card.find(function(err, cards) {
       if (err) {
         res.status(500).send({
@@ -16,7 +16,8 @@ module.exports = {
       }
     })
   },
-  craeta: function (req, res) {
+  create: function (req, res) {
+    console.log(req.body)
     let newCard = new Card(req.body)
     newCard.save(function (err, card) {
       if (err) {
@@ -56,7 +57,7 @@ module.exports = {
       }
     })
   },
-  delete: function (req, res) {
+  deletes: function (req, res) {
     Card.remove({ _id: req.id }, function (err, result) {
       if (err) {
         res.status(500).send({
