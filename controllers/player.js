@@ -43,7 +43,7 @@ module.exports = {
         })
       } else {
         Player
-          .findOne({ _id: req.id }, function (err, player) {
+          .findOne({ _id: req.params.id }, function (err, player) {
           if (err) {
             res.status(500).json({
               msg: 'error data player not found',
@@ -54,9 +54,9 @@ module.exports = {
               msg: 'success updating data player',
               player
             })
-            .populate('cardlist')
           }
         })
+        .populate('cardlist')
       }
     })
   },
