@@ -10,14 +10,14 @@ module.exports = {
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
         }
     })
   },
-  craete: function (req, res) {
+  create: function (req, res) {
     let newPlayer = new Player(req.body)
     newPlayer.save(function (err, player) {
       if (err) {
@@ -57,7 +57,7 @@ module.exports = {
       }
     })
   },
-  delete: function (req, res) {
+  deletes: function (req, res) {
     Player.remove({ _id: req.id }, function (err, result) {
       if (err) {
         res.status(500).send({
