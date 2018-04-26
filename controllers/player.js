@@ -56,7 +56,7 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Player.remove({ _id: req.id }, function (err, result) {
+    Player.remove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
