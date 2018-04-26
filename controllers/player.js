@@ -3,19 +3,21 @@ const Player = require('../models/Player')
 module.exports = {
   all: function (req, res) {
     Player
-      .find(function (err, players) {
-        if (err) {
-          res.status(500).send({
-            msg: 'error get data players',
-            err
-          })
-        } else {
-          res.status(200).send({
-            msg: 'success get data players',
-            players
-          })
-        }
-    })
+      .find()
+      .populate('cardlist')
+      //function (err, players
+      .then(response => {
+        res.status(200).send({
+          msg: 'success get data players',
+          players: response
+        })
+      })
+      .catch(err => {
+        res.status(500).send({
+          msg: 'error get data players',
+          err
+        })
+      })
   },
   create: function (req, res) {
     let newPlayer = new Player(req.body)
@@ -48,7 +50,7 @@ module.exports = {
               err
             })
           } else {
-            res.status(200).send({
+            res.status(201).send({
               msg: 'success updating data player',
               player
             })
@@ -65,7 +67,7 @@ module.exports = {
           err
         })
       } else {
-        res.status(200).send({
+        res.status(201).send({
           msg: 'success deleting data player',
           result
         })
