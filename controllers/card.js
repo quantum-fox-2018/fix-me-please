@@ -49,6 +49,7 @@ module.exports = {
           } else {
             res.status(201).json({
               msg: 'success updating data card',
+              card
             })
           }
         })
