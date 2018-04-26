@@ -1,16 +1,16 @@
 const Player = require('../models/Player')
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
   all: function (req, res) {
-    Player
-      .find(function (err, players) {
+    Player.find(function (err, players) {
         if (err) {
           res.status(500).send({
             msg: 'error get data players',
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
@@ -26,7 +26,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player
         })
@@ -58,7 +58,7 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Player.remove({ _id: req.id }, function (err, result) {
+    Player.remove({ _id: ObjectId(req.body.id) }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
