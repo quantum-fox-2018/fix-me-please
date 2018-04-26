@@ -20,7 +20,7 @@ module.exports = {
     let {name, superskill, type, role} = req.body
     let newCard = new Card({name, superskill, type, role})
 
-    newCard.save(function (err) {
+    newCard.save(function (err, cards) {
       if (err) {
         res.status(500).send({
           msg: 'error add data card',
@@ -29,28 +29,29 @@ module.exports = {
       } else {
         res.status(201).send({
           msg: 'success add data card',
-          newCard
+          card: cards
         })
       }
     })
   },
   update: function (req, res) {
-    Card.findOne({ _id: req.params.id }, function (err, card) {
+    Card.update({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
-          msg: 'error data card not found',
+          msg: 'error updating data card',
           err
         })
       } else {
-        Card.findByIdAndUpdate(req.params.id, req.body, function (err, result) {
+        Card.findOne({ _id: req.params.id }, function (err, card) {
           if (err) {
             res.status(500).send({
-              msg: 'error updating data card',
+              msg: 'error data card not found',
               err
             })
           } else {
             res.status(201).send({
-              msg: 'success updating data card'
+              msg: 'success updating data card',
+              card
             })
           }
         })

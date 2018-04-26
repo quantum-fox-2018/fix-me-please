@@ -2,18 +2,18 @@ const Player = require('../models/Player')
 
 module.exports = {
   all: function (req, res) {
-    Player.find(function (err, players) {
-        if (err) {
-          res.status(500).send({
-            msg: 'error get data players',
-            err
-          })
-        } else {
-          res.status(200).send({
-            msg: 'success get data players',
-            players
-          })
-        }
+    Player.find(function(err, players) {
+      if (err) {
+        res.status(500).send({
+          msg: 'error get data players',
+          err
+        })
+      } else {
+        res.status(200).send({
+          msg: 'success get all data players',
+          players
+        })
+      }
     })
   },
   create: function (req, res) {
@@ -27,7 +27,7 @@ module.exports = {
       } else {
         res.send({
           msg: 'success add data player',
-          player
+          player: newPlayer
         })
       }
     })
@@ -57,7 +57,7 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Player.remove({ _id: req.params.id }, function (err, result) {
+    Player.remove({ _id: req.params.id }, function (err, players) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
@@ -66,7 +66,7 @@ module.exports = {
       } else {
         res.status(201).send({
           msg: 'success deleting data player',
-          result
+          players
         })
       }
     })
