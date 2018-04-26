@@ -1,4 +1,4 @@
-const router = require('express').Route()
+const router = require('express').Router()
 const {
   all, create, update, deletes
 } = require('../controllers/card')
