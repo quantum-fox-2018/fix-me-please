@@ -1,4 +1,4 @@
-const Card = require('../models/card')
+const Card = require('../models/Card')
 
 module.exports = {
   all: function (req, res) {
@@ -17,8 +17,10 @@ module.exports = {
     })
   },
   create: function (req, res) {
-    let newCard = new Card(req.body)
-    newCard.save(function (err, card) {
+    let {name, superskill, type, role} = req.body
+    let newCard = new Card({name, superskill, type, role})
+
+    newCard.save(function (err) {
       if (err) {
         res.status(500).send({
           msg: 'error add data card',
@@ -27,10 +29,9 @@ module.exports = {
       } else {
         res.status(201).send({
           msg: 'success add data card',
-          card
+          newCard
         })
       }
-      res.send(card)
     })
   },
   update: function (req, res) {
