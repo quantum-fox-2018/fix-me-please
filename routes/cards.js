@@ -1,7 +1,5 @@
 const router = require('express').Router()
-const {
-  all, create, update, deletes
-} = require('../controllers/card')
+const {all, create, update, deletes} = require('../controllers/card')
 
 router
   .get('/', all)
