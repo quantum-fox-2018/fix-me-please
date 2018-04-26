@@ -3,10 +3,9 @@ const {
   all, create, update, deletes
 } = require('../controllers/player')
 
-router
-  .get('/', all)
-  .post('/', create)
-  .put('/:id', update)
-  .delete('/:id', deletes)
+router.get('/', all)
+router.post('/', create)
+router.put('/:id', update)
+router.delete('/:id', deletes)
 
 module.exports = router;
