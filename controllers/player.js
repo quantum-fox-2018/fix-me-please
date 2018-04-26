@@ -43,27 +43,30 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.update({ _id: req.id }, { $set: req.body }, function (err, result) {
-      if (err) {
-        res.status(500).send({
-          msg: 'error updating data player',
-          err
-        })
-      } else {
-        Player.findOne({ _id: req.id }, function (err, player) {
-          if (err) {
-            res.status(500).send({
-              msg: 'error data player not found',
-              err
-            })
-          } else {
-            res.status(201).send({
-              msg: 'success updating data player',
-              player
-            })
-          }
-        })
-      }
+    console.log('masuk fungsi update')
+    Player.findOneAndUpdate({
+      _id: req.params.id ,
+    }, {
+      nickname: req.body.nickname,
+      memberid: req.body.memberid,
+      role: req.body.role,
+      datejoin: Date.now(),
+      mmr: req.body.mmr, // number
+      cardlist: req.body.cardlist // id Card
+    },
+    function (err, result) {
+        console.log(result)
+        if (err) {
+          res.status(500).send({
+            msg: 'error data player not found',
+            err
+          })
+        } else {
+          res.status(201).send({
+            msg: 'success updating data player',
+            result
+          })
+        }
     })
   },
   delete: function (req, res) {

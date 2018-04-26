@@ -6,7 +6,7 @@ const {
 
 router.get('/', all)
 router.post('/', create)
-// router.put('/:id', update)
+router.put('/:id', update)
 // router.delete('/:id', deletes)
 
 module.exports = router;
