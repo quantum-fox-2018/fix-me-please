@@ -2,7 +2,6 @@ const Card = require('../models/card')
 
 module.exports = {
   all: function (req, res) {
-    console.log('masuk')
     Card.find(function(err, cards) {
       if (err) {
         res.status(500).send({
@@ -42,7 +41,7 @@ module.exports = {
           err
         })
       } else {
-        Card.findOne({ _id: req.id }, function (err, card) {
+        Card.findOne({ _id: req.params.id }, function (err, card) {
           if (err) {
             res.status(500).send({
               msg: 'error data card not found',
@@ -65,7 +64,7 @@ module.exports = {
           err
         })
       } else {
-        res.status(201).send({
+        res.status(200).send({
           msg: 'success deleting data card',
           result
         })
