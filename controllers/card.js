@@ -1,4 +1,4 @@
-const Card = require('../models/card')
+const Card = require('../models/Card')
 
 module.exports = {
   ell: function (req, res) {
