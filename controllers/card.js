@@ -40,7 +40,7 @@ module.exports = {
           err
         })
       } else {
-        Card.findOne({ _id: req.id }, function (err, card) {
+        Card.findOne({ _id: req.params.id }, function (err, card) {
           if (err) {
             res.status(500).send({
               msg: 'error data card not found',
