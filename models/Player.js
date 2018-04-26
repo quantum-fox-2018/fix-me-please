@@ -7,7 +7,10 @@ const playerSchema = new Schema({
   role: String,
   datejoin: { type: Date, default: Date.now() },
   mmr: Number,
-  cardlist: [{ type: Schema.Types.ObjectId, ref: 'card' }]
+  cardlist: [{ type: Schema.Types.ObjectId, ref: 'Card' }]
+},
+{
+  timestamps: true
 });
 
 const Player = mongoose.model('Player', playerSchema)
