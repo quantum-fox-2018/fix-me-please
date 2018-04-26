@@ -1,6 +1,16 @@
-card.js baris 1 -> jadi huruf kapital
-cards.js router -> jadi .Router()
-fix typo both controller
+player model -> cardList, ref jadi Card (kapital), tambah timestamp
+app.get -> app.use
 
-deletes -> delete di router
-fix router import problem
+controller cards create
+
+controller cards update, delete pakai params, status(201), kurang payload
+
+ada res send di controller player yg seharusnya res status
+
+res.send di 2 controller, yg benar res.status().json
+
+app.js kurang url encoded buat req.body
+
+card update controller fix
+
+controller update, delete, dll pakai req.params.id
