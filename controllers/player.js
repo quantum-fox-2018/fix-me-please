@@ -18,14 +18,14 @@ module.exports = {
   },
   create: function (req, res) {
     let newPlayer = new Player(req.body)
-    newPlayer.save(function (err, player) {
+    newPlayer.save(function (err) {
       if (err) {
         res.status(500).send({
           msg: 'error add data player',
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player: newPlayer
         })
