@@ -48,7 +48,7 @@ module.exports = {
               err
             })
           } else {
-            res.status(200).send({
+            res.status(201).send({
               msg: 'success updating data player',
               player
             })
@@ -65,7 +65,7 @@ module.exports = {
           err
         })
       } else {
-        res.status(201).send({
+        res.status(200).send({
           msg: 'success deleting data player',
           result
         })

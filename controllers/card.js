@@ -64,7 +64,7 @@ module.exports = {
           err
         })
       } else {
-        res.status(200).send({
+        res.status(201).send({
           msg: 'success deleting data card',
           result
         })

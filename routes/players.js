@@ -7,6 +7,6 @@ router
   .get('/', all)
   .post('/', create)
   .put('/:id', update)
-  .delete('/:id', deletes)
+  .delete('/:id', deletes) 
 
 module.exports = router;

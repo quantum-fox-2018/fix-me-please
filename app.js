@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+mongoose.models = {};
+mongoose.modelSchemas = {};
 
 const uri = 'mongodb://localhost/fix-me-please'
 
