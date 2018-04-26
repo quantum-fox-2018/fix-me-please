@@ -3,6 +3,7 @@ const Card = require('../models/Card')
 module.exports = {
   all: function (req, res) {
     Card.find(function(err, cards) {
+      console.log(cards)
       if (err) {
         res.status(500).send({
           msg: 'error get data cards',
@@ -30,7 +31,6 @@ module.exports = {
           card
         })
       }
-      res.send(card)
     })
   },
   update: function (req, res) {
