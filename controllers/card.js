@@ -17,7 +17,12 @@ module.exports = {
     })
   },
   create: function (req, res) {
-    let newCard = new Card(req.body)
+    let newCard = new Card ({
+      name: req.body.name,
+      superskill: req.body.superskill,
+      type: req.body.type,
+      role: req.body.role
+    })
     newCard.save(function (err, card) {
       if (err) {
         res.status(500).send({
@@ -30,7 +35,7 @@ module.exports = {
           card
         })
       }
-      res.send(card)
+      // res.send(card)
     })
   },
   update: function (req, res) {
