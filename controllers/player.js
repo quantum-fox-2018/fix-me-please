@@ -26,7 +26,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player
         })
@@ -34,31 +34,22 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Player.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data player',
           err
         })
       } else {
-        Player.findOne({ _id: req.id }, function (err, player) {
-          if (err) {
-            res.status(500).send({
-              msg: 'error data player not found',
-              err
-            })
-          } else {
-            res.status(201).send({
-              msg: 'success updating data player',
-              player
-            })
-          }
+        res.status(201).send({
+          msg: 'success updating data player',
+          player
         })
       }
     })
   },
   deletes: function (req, res) {
-    Player.remove({ _id: req.id }, function (err, result) {
+    Player.remove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
