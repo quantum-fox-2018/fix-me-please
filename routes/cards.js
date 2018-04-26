@@ -7,4 +7,4 @@ router
   .put('/:id', update)
   .delete('/:id', deletes)
 
-module.exports = router;
+module.exports = router

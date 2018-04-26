@@ -30,11 +30,14 @@ module.exports = {
           card
         })
       }
-      res.send(card)
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.update({
+      _id: req.params.id
+    }, {
+      $set: req.body
+    }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
@@ -57,7 +60,9 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Card.remove({ _id: req.id }, function (err, result) {
+    Card.remove({
+      _id: req.params.id
+    }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data card',

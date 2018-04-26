@@ -23,7 +23,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 
-app.get('/api/cards', cards)
+app.use('/api/cards', cards)
 app.use('/api/players', players)
 
 app.listen(3000, () => console.log('listening on port 3000'))
