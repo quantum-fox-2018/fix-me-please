@@ -30,7 +30,6 @@ module.exports = {
           card
         })
       }
-      res.send(card)
     })
   },
   update: function (req, res) {
