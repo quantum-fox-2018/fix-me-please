@@ -1,12 +1,10 @@
 const router = require('express').Router()
-const {
-  all, create, update, deletes
-} = require('../controllers/player')
+const ctPlayer = require('../controllers/player')
 
 router
-  .get('/', all)
-  .post('/', create)
-  .put('/:id', update)
-  .delete('/:id', deletes)
+  .get('/', ctPlayer.all)
+  .post('/', ctPlayer.create)
+  .put('/:id', ctPlayer.update)
+  .delete('/:id', ctPlayer.delete)
 
 module.exports = router;

@@ -1,0 +1,6 @@
+card.js baris 1 -> jadi huruf kapital
+cards.js router -> jadi .Router()
+fix typo both controller
+
+deletes -> delete di router
+fix router import problem
