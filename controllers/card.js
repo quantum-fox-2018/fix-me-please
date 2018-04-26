@@ -1,4 +1,5 @@
 const Card = require('../models/Card')
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
   all: function (req, res) {
@@ -30,11 +31,11 @@ module.exports = {
           card
         })
       }
-      res.send(card)
+      // res.send(card)
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.findOneAndUpdate({ _id: ObjectId(req.body.id) }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
@@ -50,6 +51,7 @@ module.exports = {
           } else {
             res.status(201).send({
               msg: 'success updating data card',
+              card
             })
           }
         })
