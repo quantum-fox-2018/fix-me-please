@@ -1,0 +1,19 @@
+{
+  "name": "fix-me-please",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Erwin W Ramadhan <erwinwahyuramadhan@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.16",
+    "nodemon": "^1.17.3"
+  }
+}
