@@ -10,7 +10,7 @@ module.exports = {
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
