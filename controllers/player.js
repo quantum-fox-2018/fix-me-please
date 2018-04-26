@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, result) {
+    Player.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, player) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data player',
