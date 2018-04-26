@@ -1,7 +1,7 @@
 const Card = require('../models/Card')
 
 module.exports = {
-  ell: function (req, res) {
+  all: function (req, res) {
     Card.find(function(err, cards) {
       if (err) {
         res.status(500).send({
