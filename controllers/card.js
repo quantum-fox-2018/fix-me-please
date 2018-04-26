@@ -1,7 +1,7 @@
-const Card = require('../models/card')
+const Card = require('../models/Card')
 
 module.exports = {
-  ell: function (req, res) {
+  all: function (req, res) {
     Card.find(function(err, cards) {
       if (err) {
         res.status(500).send({
@@ -16,8 +16,15 @@ module.exports = {
       }
     })
   },
-  craeta: function (req, res) {
-    let newCard = new Card(req.body)
+  create: function (req, res) {
+    // console.log(req.body)
+    let newCard = new Card({
+      name: req.body.name,
+      superskill: req.body.superskill,
+      type: req.body.type,
+      role: req.body.role
+    })
+
     newCard.save(function (err, card) {
       if (err) {
         res.status(500).send({
@@ -30,34 +37,36 @@ module.exports = {
           card
         })
       }
-      res.send(card)
+      // res.send(card)
     })
   },
   update: function (req, res) {
-    Card.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Card.findOneAndUpdate({
+      _id: req.params.id ,
+    }, {
+      name: req.body.name,
+      superskill: req.body.superskill,
+      type: req.body.type,
+      role: req.body.role
+    },
+
+    function (err, card) {
+        console.log(card)
       if (err) {
         res.status(500).send({
           msg: 'error updating data card',
           err
         })
       } else {
-        Card.findOne({ _id: req.id }, function (err, card) {
-          if (err) {
-            res.status(500).send({
-              msg: 'error data card not found',
-              err
-            })
-          } else {
-            res.status(201).send({
-              msg: 'success updating data card',
-            })
-          }
-        })
+          res.status(201).send({
+            msg: 'success updating data card',
+            card
+          })
       }
     })
   },
-  delete: function (req, res) {
-    Card.remove({ _id: req.id }, function (err, result) {
+  deletes: function (req, res) {
+    Card.remove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data card',
