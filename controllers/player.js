@@ -26,7 +26,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(200).send({
           msg: 'success add data player',
           player
         })
