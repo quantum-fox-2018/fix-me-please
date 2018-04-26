@@ -1,7 +1,5 @@
-const router = require('express').Route()
-const {
-  all, create, update, deletes
-} = require('../controllers/card')
+const router = require('express').Router()
+const {all, create, update, deletes} = require('../controllers/card')
 
 router
   .get('/', all)
@@ -9,4 +7,4 @@ router
   .put('/:id', update)
   .delete('/:id', deletes)
 
-module.exports = router;
+module.exports = router
