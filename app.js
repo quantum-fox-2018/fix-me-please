@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const uri = 'mongodb://localhost/fix-me-please'
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 mongoose.Promise = global.Promise
 mongoose.connect(uri, function(err) {
   if(err) {

@@ -17,7 +17,6 @@ module.exports = {
     })
   },
   create: function (req, res) {
-    console.log(req.body)
     let newCard = new Card(req.body)
     newCard.save(function (err, card) {
       if (err) {
