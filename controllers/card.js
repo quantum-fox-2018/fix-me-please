@@ -2,6 +2,7 @@ const Card = require('../models/Card')
 
 module.exports = {
   all: function (req, res) {
+    console.log('here')
     Card.find(function(err, cards) {
       if (err) {
         res.status(500).send({
