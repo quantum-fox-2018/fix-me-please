@@ -17,7 +17,7 @@ module.exports = {
         }
     })
   },
-  craete: function (req, res) {
+  create: function (req, res) {
     let newPlayer = new Player(req.body)
     newPlayer.save(function (err, player) {
       if (err) {
@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Player.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data player',
@@ -57,8 +57,8 @@ module.exports = {
       }
     })
   },
-  delete: function (req, res) {
-    Player.remove({ _id: req.id }, function (err, result) {
+  deletes: function (req, res) {
+    Player.findOneAndRemove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
