@@ -2,7 +2,8 @@ const Player = require('../models/Player')
 
 module.exports = {
   all: function (req, res) {
-    Player.find(function(err, players) {
+    Player.find({}).populate('cardlist')
+    .exec(function(err, players) {
       if (err) {
         res.status(500).send({
           msg: 'error get data players',
@@ -69,6 +70,6 @@ module.exports = {
           players
         })
       }
-    })
+    }).populate('cards')
   }
 }
