@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Player.update({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data player',
@@ -58,7 +58,7 @@ module.exports = {
     })
   },
   deletes: function (req, res) {
-    Player.remove({ _id: req.id }, function (err, result) {
+    Player.remove({ _id: req.params.id }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error deleting data player',
