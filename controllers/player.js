@@ -3,6 +3,7 @@ const Player = require('../models/Player')
 module.exports = {
   all: function (req, res) {
     Player.find(function (err, players) {
+        console.log(players)
         if (err) {
           res.status(500).send({
             msg: 'error get data players',
@@ -14,7 +15,7 @@ module.exports = {
             players
           })
         }
-    })
+    }).populate({ path: 'Card', select: 'cardlist' })
   },
   create: function (req, res) {
     let newPlayer = new Player(req.body)
@@ -25,7 +26,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player
         })

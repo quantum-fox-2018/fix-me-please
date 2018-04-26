@@ -46,19 +46,19 @@ module.exports = {
           err
         })
       } else {
-        console.log(result)
-        // Card.findOne({ _id: req.id }, function (err, card) {
-        //   if (err) {
-        //     res.status(500).send({
-        //       msg: 'error data card not found',
-        //       err
-        //     })
-        //   } else {
+        Card.findOne({ _id: req.params.id }, function (err, card) {
+          if (err) {
+            res.status(500).send({
+              msg: 'error data card not found',
+              err
+            })
+          } else {
             res.status(201).send({
               msg: 'success updating data card',
+              card
             })
-          // }
-        // })
+          }
+        })
       }
     })
   },
