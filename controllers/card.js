@@ -56,7 +56,7 @@ module.exports = {
       }
     })
   },
-  delete: function (req, res) {
+  deletes: function (req, res) {
     Card.remove({ _id: req.id }, function (err, result) {
       if (err) {
         res.status(500).send({
