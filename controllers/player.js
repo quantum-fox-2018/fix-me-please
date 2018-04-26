@@ -3,14 +3,14 @@ const Player = require('../models/Player')
 module.exports = {
   all: function (req, res) {
     Player
-      .find(function (err, players) {
+    .find({}, function (err, players) {
         if (err) {
           res.status(500).send({
             msg: 'error get data players',
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
@@ -34,14 +34,14 @@ module.exports = {
     })
   },
   update: function (req, res) {
-    Player.update({ _id: req.id }, { $set: req.body }, function (err, result) {
+    Player.update({ _id: req.params.id }, { $set: req.body }, function (err, result) {
       if (err) {
         res.status(500).send({
           msg: 'error updating data player',
           err
         })
       } else {
-        Player.findOne({ _id: req.id }, function (err, player) {
+        Player.findOne({ _id: req.params.id }, function (err, player) {
           if (err) {
             res.status(500).send({
               msg: 'error data player not found',
