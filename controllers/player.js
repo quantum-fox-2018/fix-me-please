@@ -1,22 +1,6 @@
 const Player = require('../models/Player')
 
 module.exports = {
-  // all: function (req, res) {
-  //   Player
-  //     .find(function (err, players) {
-  //       if (err) {
-  //         res.status(500).send({
-  //           msg: 'error get data players',
-  //           err
-  //         })
-  //       } else {
-  //         res.status(200).send({
-  //           msg: 'success get data players',
-  //           players
-  //         })
-  //       }
-  //   })
-  // },
   all: function (req, res) {
     Player.find()
       .populate('cardlist')
