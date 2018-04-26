@@ -2,23 +2,23 @@ const Card = require('../models/Card')
 
 module.exports = {
   all: function (req, res) {
-    Card.find({})
-    .then(function(cards) {
-      res.status(200).send({
-        msg: 'success get data cards',
-        cards: cards
-      })
-    })
-    .catch(function(err){
-      res.status(500).send({
-        msg: 'error get data cards',
-        err
-      })
+    Card.find(function(err, cards) {
+      if (err) {
+        res.status(500).send({
+          msg: 'error get data cards',
+          err
+        })
+      } else {
+        res.status(200).send({
+          msg: 'success get data cards',
+          cards
+        })
+      }
     })
   },
   create: function (req, res) {
     let newCard = new Card(req.body)
-    Card.save({newCard}, function (err, card) {
+    newCard.save(function (err, card) {
       if (err) {
         res.status(500).send({
           msg: 'error add data card',
@@ -56,20 +56,19 @@ module.exports = {
       }
     })
   },
-  delete: function (req, res) {
-    let cardId = req.params.id
-    Card.remove({ _id: cardId })
-    .then(function(result) {
-      res.status(201).send({
-        msg: 'success deleting data card',
-        result
-      })
+  deletes: function (req, res) {
+    Player.remove({ _id: req.params.id }, function (err, result) {
+      if (err) {
+        res.status(500).send({
+          msg: 'error deleting data player',
+          err
+        })
+      } else {
+        res.status(201).send({
+          msg: 'success deleting data player',
+          result
+        })
+      }
     })
-    .catch(function(err){
-      res.status(500).send({
-        msg: 'error deleting data card',
-        err
-      })
-    })
-  }
+}
 }
