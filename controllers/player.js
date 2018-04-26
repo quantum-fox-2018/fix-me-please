@@ -3,7 +3,9 @@ const Player = require('../models/Player')
 module.exports = {
   all: function (req, res) {
     Player
-    .find({}, function (err, players) {
+    .find({})
+    .populate('cardlist')
+    .exec(function (err, players) {
         if (err) {
           res.status(500).send({
             msg: 'error get data players',
@@ -26,7 +28,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player
         })
