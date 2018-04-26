@@ -10,7 +10,7 @@ module.exports = {
             err
           })
         } else {
-          res.send(200).status({
+          res.status(200).send({
             msg: 'success get data players',
             players
           })
@@ -26,7 +26,7 @@ module.exports = {
           err
         })
       } else {
-        res.send({
+        res.status(201).send({
           msg: 'success add data player',
           player
         })
@@ -41,14 +41,14 @@ module.exports = {
           err
         })
       } else {
-        Player.findOne({ _id: req.id }, function (err, player) {
+        Player.findOne({ _id: req.params.id }, function (err, player) {
           if (err) {
             res.status(500).send({
               msg: 'error data player not found',
               err
             })
           } else {
-            res.status(201).send({
+            res.status(200).send({
               msg: 'success updating data player',
               player
             })
