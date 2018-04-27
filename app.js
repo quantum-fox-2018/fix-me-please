@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const uri = 'mongodb://localhost/fix-me-please'
 
 mongoose.Promise = global.Promise
+
 mongoose.connect(uri, function(err) {
   if(err) {
     console.log('Error connecting to the database. ' + err)
@@ -13,12 +14,13 @@ mongoose.connect(uri, function(err) {
   }
 })
 
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
 const cards = require('./routes/cards')
 const players = require('./routes/players')
 
-app.use(express.json())
-
-app.get('/api/cards', cards)
+app.use('/api/cards', cards)
 app.use('/api/players', players)
 
 app.listen(3000, () => console.log('listening on port 3000'))
